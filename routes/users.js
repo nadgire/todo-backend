@@ -65,7 +65,7 @@ router.post('/login', async (req, res) => {
             if (isMatch) {
                 res.cookie('myaddress', obj.email, {
                     maxAge: 36000 * 10000, httpOnly: false,
-                    sameSite: 'None',
+                    sameSite: 'None',secure : true
                 });
                 console.log(user.accountStatus);
 
