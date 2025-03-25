@@ -5,7 +5,6 @@ const cors = require('cors');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 
-const allowedOrigins = ['http://localhost:5173', 'https://simplymanagetask.netlify.app'];
 
 
 const app = express();
@@ -13,6 +12,8 @@ connectDB();
 
 app.use(cookieParser());
 app.use(express.json());
+const allowedOrigins = ['http://localhost:5173', 'https://simplymanagetask.netlify.app'];
+
 app.use(cors({
   origin: function (origin, callback) {
     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
