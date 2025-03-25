@@ -100,8 +100,9 @@ router.post('/tasks', async (req, res) => {
     }
 });
 
-router.post('/newTasks', async (req, res) => {
+router.post('/newTasks', async (req,    res) => {
     try {
+        console.log(req.body.email);
         const users = await User.find({ email: req.body.email });
         const obj = { taskID: "Task", title: req.body.title, dueDate: req.body.dueDate, status: req.body.status, isDeleted: false };
         console.log(obj);
