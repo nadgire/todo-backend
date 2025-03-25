@@ -103,7 +103,7 @@ router.post('/tasks', async (req, res) => {
 router.post('/newTasks', async (req, res) => {
     try {
         const users = await User.find({ email: req.body.email });
-        const obj = { taskID: "Task" + (users[0].tasks.length() + 1), title: req.body.title, dueDate: req.body.dueDate, status: req.body.status, isDeleted: false };
+        const obj = { taskID: "Task", title: req.body.title, dueDate: req.body.dueDate, status: req.body.status, isDeleted: false };
         console.log(obj);
         if (users.length > 0) {
             const tasks = await User.updateOne({ email: req.body.email }, { $push: { tasks: obj } });
