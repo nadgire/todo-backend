@@ -53,7 +53,6 @@ router.post('/signup', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
-    const SECRET_KEY = '_my_stay';
 
     try {
         const obj = req.body;
@@ -64,7 +63,11 @@ router.post('/login', async (req, res) => {
             const isMatch = await bcrypt.compare(obj.password, user.password);
 
             if (isMatch) {
-                res.cookie('myaddress', obj.email, { maxAge: 36000 * 10000 });
+                res.cookie('myaddress', obj.email, {
+                    maxAge: 36000 * 10000, httpOnly: false,
+                    secure: process.env.NODE_ENV === 'production',
+                    sameSite: 'None',
+                });
                 console.log(user.accountStatus);
 
                 if (user.accountStatus == "verification pending") {
@@ -100,7 +103,7 @@ router.post('/tasks', async (req, res) => {
     }
 });
 
-router.post('/newTasks', async (req,    res) => {
+router.post('/newTasks', async (req, res) => {
     try {
         console.log(req.body.email);
         const users = await User.find({ email: req.body.email });
