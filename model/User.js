@@ -11,7 +11,7 @@ const UserSchema = new mongoose.Schema({
     required: true,
   },
   tasks: [],
-  accountStatus: String,
+  isAccountActive: Boolean,
 });
 
 const User = mongoose.model('User', UserSchema, 'User');
