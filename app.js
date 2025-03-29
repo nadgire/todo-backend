@@ -16,6 +16,7 @@ const allowedOrigins = ['http://localhost:5173', 'https://simplymanagetask.netli
 
 app.use(cors({
   origin: 'https://simplytodomanager.netlify.app',
+  credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
