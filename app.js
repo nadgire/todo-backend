@@ -14,7 +14,11 @@ app.use(cookieParser());
 app.use(express.json());
 const allowedOrigins = ['http://localhost:5173', 'https://simplymanagetask.netlify.app'];
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://simplytodomanager.netlify.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 app.use(cookieParser())
 
