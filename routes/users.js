@@ -102,6 +102,7 @@ router.post('/get-all-tasks', async (req, res) => {
 
 router.post('/add-task', async (req, res) => {
   const { email, title, dueDate } = req.body;
+  console.log('Adding task for:', email, 'Title:', title, 'Due Date:', dueDate);
   const tasks = await getTasks(email);
   const newTask = {
     ID: 'TASK' + (tasks.length + 1),
