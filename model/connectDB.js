@@ -1,15 +1,17 @@
-const mongoose = require('mongoose');
+require("dotenv").config();
+const { neon } = require("@neondatabase/serverless");
 
-const connectDB = async () => {
+const sql = neon(process.env.DATABASE_URL);
+
+// Test the connection with a simple query
+(async () => {
   try {
-    await mongoose.connect('mongodb://3.110.27.235:27017/todo', {
-
-    });
-    console.log('MongoDB connected successfully!');
+    await sql`SELECT 1`; // Lightweight test query
+    console.log("Neon PostgreSQL connected successfully!");
   } catch (err) {
-    console.error('Error connecting to MongoDB:', err.message);
-    process.exit(1); 
+    console.error("Error connecting to Neon PostgreSQL:", err.message);
+    process.exit(1);
   }
-};
+})();
 
-module.exports = connectDB;
+module.exports = sql;
