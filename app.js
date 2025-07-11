@@ -8,7 +8,7 @@ require('dotenv').config(); // ensure environment variables are loaded early
 const app = express();
 
 // CORS Configuration
-const allowedOrigins = ['http://localhost:5173', 'https://simplytodomanager.netlify.app/'];
+const allowedOrigins = ['http://localhost:5173', 'https://simplytodomanager.netlify.app'];
 app.options('*', cors({
   origin: allowedOrigins,
   credentials: true,
