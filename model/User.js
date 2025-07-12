@@ -36,7 +36,7 @@ async function deactivateAccount(email) {
 async function addTask(email, newTask) {
   const result = await sql`
     UPDATE users
-    SET tasks = tasks || ${sql.json([newTask])}
+    SET tasks = tasks || ${JSON.stringify([newTask])}
     WHERE email = ${email}
     RETURNING tasks;
   `;
@@ -57,9 +57,14 @@ async function updateTask(email, taskId, field, value) {
   const tasks = user.tasks.map(task =>
     task.ID === taskId ? { ...task, [field]: value } : task
   );
-  await sql`UPDATE users SET tasks = ${sql.json(tasks)} WHERE email = ${email}`;
+  await sql`
+    UPDATE users
+    SET tasks = ${JSON.stringify(tasks)}
+    WHERE email = ${email};
+  `;
   return tasks;
 }
+
 
 module.exports = {
   findUserByEmail,
