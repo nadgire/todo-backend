@@ -9,18 +9,7 @@ const app = express();
 
 // CORS Configuration
 const allowedOrigins = ['http://localhost:5173', 'https://simplytodomanager.netlify.app'];
-app.options('*', cors({
-  origin: allowedOrigins,
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-}));
-app.use(cors({
-  origin: allowedOrigins,
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-}));
+app.use(cors());
 
 app.use(cookieParser());
 app.use(express.json());
